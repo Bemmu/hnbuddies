@@ -195,9 +195,9 @@ If Alice replies to a comment from Bob, and then later on Bob responds to a diff
 
 ## If you want to run the code yourself...
 
-Download HNCommentsAll.json from [here](https://archive.org/details/HackerNewsStoriesAndCommentsDump).
+I downloaded HNCommentsAll.json from [here](https://archive.org/details/HackerNewsStoriesAndCommentsDump). That dump seems to be rather old. If you have a newer dump and want to re-run the toplist, here's how to do it.
 
-You need ijson. It's a JSON parser that works as a stream, so that the entire 9GB comments dump doesn't need to be loaded to memory.
+First you need ijson. It's a JSON parser that works as a stream, so that the entire 9GB comments dump doesn't need to be loaded to memory.
 
 ```
 pip install ijson
@@ -211,4 +211,6 @@ python replies.py
 python best_friends.py
 ```
 
-Note that this could take hours to run. There are millions of comments, and the code hasn't been optimized.
+Note that this could take hours to run. There are millions of comments, and the code hasn't been optimized. It took about 2 hours on my late 2013 MBP with the 9GB dump file.If you do update the list, please send a pull request so I can include your more up-to-date toplist here.
+
+Thanks for reading!
