@@ -183,28 +183,32 @@
 
 ## Motivation
 
-The whole Hacker News comments database is publicly available, and I wanted to dig through it a bit with Python to see if I could find anything interesting. On HN people can reply to each other's comments. Is there something you could do by tallying up who responded to what?
+The whole Hacker News comments database is [publicly available](https://archive.org/details/HackerNewsStoriesAndCommentsDump), so I wanted to play around with it a bit to see if I could find anything interesting. 
+
+Idea: People can reply to each other's comments. Could you tally up who tends to respond to whom, and make a kind of "best friends" list out of that?
 
 ## Defining a friendship
 
-I decided to make a toplist of "friendships" on HN. A friendship is pairs of people who tend to reply to each other's comments a lot. Friendships need to be two-way. Unrequited love is not counted here, people have to *exchange* messages.
+A friendship is pairs of people who tend to reply to each other's comments a lot. Friendships need to be two-way. Unrequited love is not counted here, people have to *exchange* messages.
 
-For example if Alice replies to a comment from Bob, and then later on Bob responds to another comment from Alice, I give the Alice<->Bob friendship one point. In other words, if there are x comments from Alice to Bob and y comments from Bob to Alice, then their "friendship score" is min(x, y).
+If Alice replies to a comment from Bob, and then later on Bob responds to a different comment from Alice, the Alice<->Bob friendship gains one point. In other words, if there are x comments from Alice to Bob and y comments from Bob to Alice, then their "friendship score" is min(x, y).
 
-## Want to run the code yourself?
+## If you want to run the code yourself...
 
 Download HNCommentsAll.json from [here](https://archive.org/details/HackerNewsStoriesAndCommentsDump).
 
-Then do this dance. This could take hours to run (there are millions of comments). Each step builds a file that the next step uses, so that if something goes wrong in the middle you can pick up where it failed.
+You need ijson. It's a JSON parser that works as a stream, so that the entire 9GB comments dump doesn't need to be loaded to memory.
 
 ```
 pip install ijson
+```
+
+Each step builds a file that the next step uses, so that if something goes wrong in the middle you can pick up where it failed.
+
+```
 python build_author_dict.py
 python replies.py
 python best_friends.py
 ```
 
-
-
-
-
+Note that this could take hours to run. There are millions of comments, and the code hasn't been optimized.
