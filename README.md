@@ -1,4 +1,4 @@
-# Top Hacker News buddies
+# Hacker News buddies
 
 ## People replying to each other's comments the most:
 
