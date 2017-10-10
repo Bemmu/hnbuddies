@@ -1,3 +1,5 @@
+full = False
+
 import pickle
 from collections import defaultdict
 
@@ -41,7 +43,6 @@ for sorted_pair in sorted_pairs:
 print "Sorting scores..."
 s = sorted([(i[1], i[0]) for i in scores.items()], reverse = True)
 
-full = False
 print
 print "| Rank | Buddy score | User pair |"
 print "| ---: | ----: | --------- |"
