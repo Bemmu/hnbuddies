@@ -39,8 +39,21 @@ for sorted_pair in sorted_pairs:
 print "Sorting scores..."
 s = sorted([(i[1], i[0]) for i in scores.items()], reverse = True)
 
-print "High score list:"
-print "Score\tPair"
-print "------------------------"
+full = True
+print
+print "| Rank | Buddy score | User pair |"
+print "| ---: | ----: | --------- |"
+rank = 0
+prev_score = None
 for score, author in s:
-	print "%s\t%s" % (score, author)
+	if score != prev_score:
+		rank += 1
+	print "| #%d | %s | %s |" % (rank, score, author)
+	prev_score = score
+
+	if full:
+		if score == 0:
+			break
+	else:
+		if rank > 50:
+			break
