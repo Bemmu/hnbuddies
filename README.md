@@ -1,4 +1,4 @@
-# Hacker News buddies
+# Hacker News buddies (this doesn't work yet)
 
 ## Motivation
 
