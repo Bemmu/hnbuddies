@@ -32,6 +32,8 @@ print "Determining friend scores..."
 scores = {}
 for sorted_pair in sorted_pairs:
 	a, b = sorted_pair.split("<->")	
+	if a == b:
+		continue # Filter out self-replies
 	ab = message_counts[a + "->" + b]
 	ba = message_counts[b + "->" + a]
 	scores[sorted_pair] = min(ab, ba)
@@ -39,13 +41,14 @@ for sorted_pair in sorted_pairs:
 print "Sorting scores..."
 s = sorted([(i[1], i[0]) for i in scores.items()], reverse = True)
 
-full = True
+full = False
 print
 print "| Rank | Buddy score | User pair |"
 print "| ---: | ----: | --------- |"
 rank = 0
 prev_score = None
 for score, author in s:
+
 	if score != prev_score:
 		rank += 1
 	print "| #%d | %s | %s |" % (rank, score, author)
